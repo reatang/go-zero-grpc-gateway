@@ -36,3 +36,12 @@ curl -XPOST 'http://127.0.0.1:8888/gateway/simple/ping' \
   --header 'Content-Type: application/json' \
   --data-raw '{"ping":"SimpleApi"}'
 ```
+
+
+
+## 相关仓库：
+- go-zero: https://github.com/zeromicro/go-zero
+- grpc-gateway：https://github.com/grpc-ecosystem/grpc-gateway
+- grpc-go: https://github.com/grpc/grpc-go
+- protobuf: https://github.com/protocolbuffers/protobuf
+- googleapis: https://github.com/googleapis/googleapis
