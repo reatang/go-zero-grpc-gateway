@@ -27,7 +27,14 @@ go install \
 
 ## 二、搭建环境
 
-见 `exapmle` 目录中的示例
+见 `exapmle` 目录中的示例，关键代码文件：
+
+**rpc部分**
+- example/simple_rpc/simple_rpc.proto grpc-gateway参数的编写
+- example/simple_rpc/build.sh protobuf生成grpc-gateway代码
+
+**rest部分**
+- example/simple_api/internal/svc/servicecontext.go GatewayProxy的初始化
 
 
 ## 三、测试
