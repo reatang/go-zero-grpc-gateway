@@ -2,7 +2,7 @@
 
 go-zero rest框架中融合grpc-gateway
 
-调用链： http client -> go-zero-restapi -> grpc-gateway -> grpc-client -> grpc-server
+调用链： http client -> ( go-zero-restapi -> grpc-gateway -> grpc-client ) -> grpc-server
 
 ## 一、安装
 
@@ -40,12 +40,27 @@ go install \
 
 
 ## 三、测试
+启动服务
 ```shell
-curl -XPOST 'http://127.0.0.1:8888/gateway/simple/ping' \
+> # 启动rpc
+> cd simple_rpc 
+> go run .
+
+> # 启动api
+> cd simple_api
+> go run .
+```
+
+发起测试请求
+```shell
+> curl -XPOST 'http://127.0.0.1:8888/gateway/simple/ping' \
   --header 'Content-Type: application/json' \
   --data-raw '{"ping":"SimpleApi"}'
 ```
 
+## 四、弊端
+
+- grpc-gateway的protobuf参数必须按规范写：/前缀/服务名/方法名，因为在rest服务注册的路由就固定为这个
 
 
 ## 相关仓库：
