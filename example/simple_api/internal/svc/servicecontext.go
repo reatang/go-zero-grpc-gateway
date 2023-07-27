@@ -36,6 +36,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	gateway := zgateway.NewRpcGatewayRegister("gateway")
 	//gateway.Middlewares() // 支持注册中间件
 	gateway.Register(func(mux *runtime.ServeMux) {
+		// 将grpc客户端注入到gateway mux中
 		err := simple_rpc.RegisterSimpleRpcHandler(context.Background(), mux, simpleRpcConn.Conn())
 		logx.Must(err)
 	})
@@ -43,14 +44,15 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config: c,
 
-		// 正常的 rpc客户端
+		// 正常业务可用的rpc客户端
 		SimpleRpcClient: simplerpcclient.NewSimpleRpc(simpleRpcConn),
 
+		// gateway代理
 		gateway: gateway,
 	}
 }
 
 func (sc *ServiceContext) Setup(server *rest.Server) {
-	// 第四部：将gateway 注册到 http_server 中
+	// 第四步：将gateway 注册到 http_server 中
 	sc.gateway.InjectServer(server)
 }

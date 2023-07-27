@@ -2,6 +2,8 @@
 
 go-zero rest框架中融合grpc-gateway
 
+调用链： http client -> go-zero-restapi -> grpc-gateway -> grpc-client -> grpc-server
+
 ## 一、安装
 
 ### 1、下载 googleapis 仓库
