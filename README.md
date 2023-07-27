@@ -61,6 +61,7 @@ go install \
 ## 四、弊端
 
 - grpc-gateway的protobuf参数必须按规范写：/前缀/服务名/方法名，因为在rest服务注册的路由就固定为这个
+- 会走两次路由，go-zero走一次，grpc-gateway走一次
 
 
 ## 相关仓库：
