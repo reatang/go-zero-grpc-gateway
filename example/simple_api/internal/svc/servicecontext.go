@@ -19,7 +19,7 @@ type ServiceContext struct {
 	SimpleRpcClient simplerpcclient.SimpleRpc
 
 	// 第一步：添加proxy代理对象
-	gateway *zgateway.RpcGatewayProxy
+	gateway1 *zgateway.RpcGatewayProxy
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -33,9 +33,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	})
 
 	// 第三步：初始化proxy
-	gateway := zgateway.NewRpcGatewayRegister("gateway")
+	gateway1 := zgateway.NewRpcGatewayRegister("grpc1")
 	//gateway.Middlewares() // 支持注册中间件
-	gateway.Register(func(mux *runtime.ServeMux) {
+	gateway1.Register(func(mux *runtime.ServeMux) {
 		// 将grpc客户端注入到gateway mux中
 		err := simple_rpc.RegisterSimpleRpcHandler(context.Background(), mux, simpleRpcConn.Conn())
 		logx.Must(err)
@@ -48,11 +48,11 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		SimpleRpcClient: simplerpcclient.NewSimpleRpc(simpleRpcConn),
 
 		// gateway代理
-		gateway: gateway,
+		gateway1: gateway1,
 	}
 }
 
 func (sc *ServiceContext) Setup(server *rest.Server) {
 	// 第四步：将gateway 注册到 http_server 中
-	sc.gateway.InjectServer(server)
+	sc.gateway1.InjectServer(server)
 }

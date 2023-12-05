@@ -44,7 +44,7 @@ func (r *RpcGatewayProxy) InjectServer(s *rest.Server) {
 			r.m,
 			rest.Route{
 				Method:  http.MethodPost,
-				Path:    fmt.Sprintf("/%s/", r.prefix),
+				Path:    fmt.Sprintf("/%s/", r.prefix), // 需要支持前缀路由
 				Handler: http.StripPrefix(r.prefix, mux).ServeHTTP,
 			},
 		),

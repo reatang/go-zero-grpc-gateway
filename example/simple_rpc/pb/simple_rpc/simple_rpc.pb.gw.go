@@ -79,7 +79,7 @@ func RegisterSimpleRpcHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/simple_rpc.SimpleRpc/Ping", runtime.WithHTTPPathPattern("/gateway/simple/ping"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/simple_rpc.SimpleRpc/Ping", runtime.WithHTTPPathPattern("/simple/ping"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -143,7 +143,7 @@ func RegisterSimpleRpcHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/simple_rpc.SimpleRpc/Ping", runtime.WithHTTPPathPattern("/gateway/simple/ping"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/simple_rpc.SimpleRpc/Ping", runtime.WithHTTPPathPattern("/simple/ping"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -163,7 +163,7 @@ func RegisterSimpleRpcHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 }
 
 var (
-	pattern_SimpleRpc_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"gateway", "simple", "ping"}, ""))
+	pattern_SimpleRpc_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"simple", "ping"}, ""))
 )
 
 var (

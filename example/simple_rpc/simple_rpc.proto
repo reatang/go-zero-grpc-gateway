@@ -18,7 +18,7 @@ service simple_rpc {
   rpc Ping(Request) returns(Response) {
     option (google.api.http) = {
       // 注意 url 的格式必须是三段式：/前缀/服务名/功能名
-      post: "/gateway/simple/ping"
+      post: "/simple/ping"
       body: "*"
     };
   }
