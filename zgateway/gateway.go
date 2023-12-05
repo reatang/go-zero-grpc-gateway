@@ -44,8 +44,8 @@ func (r *RpcGatewayProxy) InjectServer(s *rest.Server) {
 			r.m,
 			rest.Route{
 				Method:  http.MethodPost,
-				Path:    fmt.Sprintf("/%s/:service/:method", r.prefix),
-				Handler: gatewayRouteHandler(mux),
+				Path:    fmt.Sprintf("/%s/", r.prefix),
+				Handler: http.StripPrefix(r.prefix, mux).ServeHTTP,
 			},
 		),
 	)

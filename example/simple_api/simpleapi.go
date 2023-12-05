@@ -4,9 +4,11 @@ import (
 	"flag"
 	"fmt"
 
+	"github.com/reatang/go-zero-addons/ahttpx"
 	"github.com/reatang/go-zero-grpc-gateway/example/simple_api/internal/config"
 	"github.com/reatang/go-zero-grpc-gateway/example/simple_api/internal/handler"
 	"github.com/reatang/go-zero-grpc-gateway/example/simple_api/internal/svc"
+	"github.com/zeromicro/go-zero/rest/router"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
@@ -20,7 +22,8 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	server := rest.MustNewServer(c.RestConf)
+	// 替换为支持前缀路由（重要）
+	server := rest.MustNewServer(c.RestConf, rest.WithRouter(ahttpx.NewPrefixPriorityRouter(router.NewRouter())))
 	defer server.Stop()
 
 	ctx := svc.NewServiceContext(c)

@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
+	github.com/reatang/go-zero-addons v0.0.0-20231011061102-192e68e6ea95
 	github.com/zeromicro/go-zero v1.5.2
 	google.golang.org/genproto v0.0.0-20230223222841-637eb2293923
 	google.golang.org/grpc v1.54.0
