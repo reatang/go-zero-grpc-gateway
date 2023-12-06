@@ -15,7 +15,7 @@ type RpcGatewayProxy struct {
 	prefix string
 }
 
-func NewRpcGatewayRegister(prefix string) *RpcGatewayProxy {
+func NewRpcGatewayProxy(prefix string) *RpcGatewayProxy {
 	return &RpcGatewayProxy{prefix: prefix, m: make([]rest.Middleware, 0)}
 }
 

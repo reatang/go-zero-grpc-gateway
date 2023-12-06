@@ -33,7 +33,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	})
 
 	// 第三步：初始化proxy
-	gateway1 := zgateway.NewRpcGatewayRegister("grpc1")
+	gateway1 := zgateway.NewRpcGatewayProxy("grpc1")
 	//gateway.Middlewares() // 支持注册中间件
 	gateway1.Register(func(mux *runtime.ServeMux) {
 		// 将grpc客户端注入到gateway mux中
