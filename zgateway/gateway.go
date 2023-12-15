@@ -39,14 +39,12 @@ func (r *RpcGatewayProxy) InjectServer(s *rest.Server) {
 
 	r.f(mux)
 
-	s.AddRoutes(
-		rest.WithMiddlewares(
-			r.m,
-			rest.Route{
-				Method:  http.MethodPost,
-				Path:    fmt.Sprintf("/%s/", r.prefix), // 需要支持前缀路由
-				Handler: http.StripPrefix(fmt.Sprintf("/%s", r.prefix), mux).ServeHTTP,
-			},
-		),
-	)
+	s.AddRoutes(rest.WithMiddlewares(
+		r.m,
+		rest.Route{
+			Method:  http.MethodPost,
+			Path:    fmt.Sprintf("/%s/", r.prefix), // 需要支持前缀路由
+			Handler: http.StripPrefix(fmt.Sprintf("/%s", r.prefix), mux).ServeHTTP,
+		},
+	))
 }
