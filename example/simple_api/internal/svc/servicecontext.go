@@ -39,6 +39,8 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		// 将grpc客户端注入到gateway mux中
 		err := simple_rpc.RegisterSimpleRpcHandler(context.Background(), mux, simpleRpcConn.Conn())
 		logx.Must(err)
+
+		// 后面还能继续加...
 	})
 
 	return &ServiceContext{

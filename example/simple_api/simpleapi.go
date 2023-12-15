@@ -22,7 +22,7 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	// 替换为支持前缀路由（重要）
+	// TODO 重要!重要!重要! 替换为前缀优先的路由模块
 	server := rest.MustNewServer(c.RestConf, rest.WithRouter(ahttpx.NewPrefixPriorityRouter(router.NewRouter())))
 	defer server.Stop()
 
