@@ -36,6 +36,7 @@ go install \
 - `example/simple_rpc/build.sh` protobuf生成grpc-gateway代码
 
 **rest部分**
+- `example/simple_api/simpleapi.go` 更换为前缀优先路由
 - `example/simple_api/internal/svc/servicecontext.go` GatewayProxy的初始化
 
 
@@ -53,15 +54,10 @@ go install \
 
 发起测试请求
 ```shell
-> curl -XPOST 'http://127.0.0.1:8888/gateway/simple/ping' \
+> curl -XPOST 'http://127.0.0.1:8888/grpc1/simple/ping' \
   --header 'Content-Type: application/json' \
   --data-raw '{"ping":"SimpleApi"}'
 ```
-
-## 四、弊端
-
-- grpc-gateway的protobuf参数必须按规范写：/前缀/服务名/方法名，因为在rest服务注册的路由就固定为这个
-- 会走两次路由，go-zero走一次，grpc-gateway走一次
 
 
 ## 相关仓库：
